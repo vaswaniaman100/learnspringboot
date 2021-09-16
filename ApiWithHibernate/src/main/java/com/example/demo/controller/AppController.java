@@ -20,9 +20,7 @@ import com.example.demo.model.Employee;
 import com.example.demo.service.EmployeeService;
 @Controller
 public class AppController {
-	
-@Autowired
-JdbcTemplate jdbctemplate;
+
 @Autowired
 EmployeeService empser;
 	//homepage

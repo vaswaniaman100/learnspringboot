@@ -26,28 +26,38 @@ public class EmployeeService {
 	EmployeeRepository rep;
 	
 	
-	Employee emp = new Employee();
+	Employee emp;
 	public void insert(String name,String address) {
+		emp = new Employee();
 		emp.setName(name);
 		emp.setAddress(address);
 		rep.save(emp);
 		
-	
 	}
 	public void insertorupdate(int id, String name,String address) {
-		emp.setId(id);
+		emp = new Employee();
+		try {
+			emp = rep.getById(id);
+		}
+		catch (Exception e) {
+			
+		}
+		
 		emp.setName(name);
 		emp.setAddress(address);
 		rep.save(emp);
 		
 	}
 	public void delete(int id) {
-		rep.deleteById(id);
+		emp= new Employee();
+		emp.setId(id);
+		rep.delete(emp);
 		
 	}
 	
 	
 	public List<Employee> getemployees(){
+		
 		return rep.getemployeelist();
 	}
 }
