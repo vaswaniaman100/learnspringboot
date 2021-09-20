@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +64,20 @@ public class EmployeeService {
 
 	}
 
-	public Object[][] getemployeedata() {
-		return rep.getemployeedata();
+	public List<LinkedHashMap<String, Object>> getemployeedata() {
+		Object[][] vemp = rep.getemployeedata();
+		List<LinkedHashMap<String, Object>> listemp = new ArrayList<>();
+		for(int i =0;i<vemp.length;i++) {
+			LinkedHashMap<String, Object> empobj = new LinkedHashMap<>();
+			
+			empobj.put("id", vemp[i][0]);
+			empobj.put("name", vemp[i][1]);
+			empobj.put("address", vemp[i][2]);
+			listemp.add(empobj);
+		}
+		
+		return listemp;
+		
 
 	}
 

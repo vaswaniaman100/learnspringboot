@@ -53,18 +53,9 @@ public class AppController {
 	@GetMapping("/viewemp")
 	@ResponseBody
 	public List<LinkedHashMap<String, Object>> viewemp() throws JSONException {
-		Object[][] vemp = empser.getemployeedata();
-		List<LinkedHashMap<String, Object>> listemp = new ArrayList<>();
-		for(int i =0;i<vemp.length;i++) {
-			LinkedHashMap<String, Object> empobj = new LinkedHashMap<>();
-			
-			empobj.put("id", vemp[i][0]);
-			empobj.put("name", vemp[i][1]);
-			empobj.put("address", vemp[i][2]);
-			listemp.add(empobj);
-		}
 		
-		return listemp;
+		
+		return empser.getemployeedata();
 	}
 
 	// insert employees
