@@ -45,18 +45,11 @@ public class AppController {
 	@GetMapping("/view")
 	@ResponseBody
 	public List<Employee> view() {
-		List<Employee> emp = empser.getemployees();
+		List<Employee> emp = empser.criteriagetemployees();
 
 		return emp;
 	}
 
-	@GetMapping("/viewemp")
-	@ResponseBody
-	public List<LinkedHashMap<String, Object>> viewemp() throws JSONException {
-		
-		
-		return empser.getemployeedata();
-	}
 
 	// insert employees
 
@@ -88,19 +81,14 @@ public class AppController {
 	public List<Employee> delete(@PathVariable int id) {
 
 		empser.delete(id);
+		
 
 		return this.view();
 	}
 	
 	
 	
-	@GetMapping("/criteriaview")
-	@ResponseBody
-	public List<Employee> criteriaview() {
-		List<Employee> emp = empser.criteriagetemployees();
-
-		return emp;
-	}
+	
 
 
 }

@@ -39,30 +39,19 @@ public class EmployeeService {
 		emp = new Employee();
 		emp.setName(name);
 		emp.setAddress(address);
-		rep.save(emp);
+		customrep.insertEmployee(emp);
 
 	}
 
 	public void insertorupdate(int id, String name, String address) {
 		emp = new Employee();
-		try {
-			emp = rep.getById(id);
-		} catch (Exception e) {
-
-		}
-
+		emp.setId(id);
 		emp.setName(name);
 		emp.setAddress(address);
-		rep.save(emp);
+		customrep.updateEmployee(emp);
 
 	}
 
-	public void delete(int id) {
-		emp = new Employee();
-		emp.setId(id);
-		rep.delete(emp);
-
-	}
 
 	public List<LinkedHashMap<String, Object>> getemployeedata() {
 		Object[][] vemp = rep.getemployeedata();
@@ -86,6 +75,13 @@ public class EmployeeService {
 		return rep.getemployeelist();
 	}
 
+	public void delete(int id) {
+//		emp = new Employee();
+//		emp.setId(id);
+		customrep.deleteEmployee(id);
+		
+	}
+	
 	public List<Employee> criteriagetemployees() {
 
 		return customrep.getemployeelist();
