@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,7 +44,21 @@ EmployeeService empser;
 	
 		return emp;
 	}
+	@GetMapping("/viewemployeebyname")
+	@ResponseBody
+	public List<LinkedHashMap<String,String>> viewemployeebyname() {
+	List<Employee> emp=	empser.getemployees();
+	List<LinkedHashMap<String,String>> namesofemp = new ArrayList<>();
+	for(Employee e : emp) {
+		namesofemp.add(new LinkedHashMap<String, String>(){
+			{
+				put("name", e.getName());		
+			}
+		});
+	}
 	
+		return namesofemp;
+	}
 	
 	//insert employees
 	
