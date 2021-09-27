@@ -60,4 +60,15 @@ public class EmployeeService {
 		
 		return rep.getemployeelist();
 	}
+	public String getEmployeeName(String name){
+		Employee emp =rep.findByName(name);
+		String username =emp.getName();
+		return username;
+	}
+	public Employee getbyEmployeeName(String name){
+		Employee emp =rep.findByName(name);
+
+
+		return emp;
+	}
 }

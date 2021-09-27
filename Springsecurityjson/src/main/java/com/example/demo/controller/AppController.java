@@ -3,21 +3,20 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.demo.helper.JwtUtil;
+import com.example.demo.model.JwtRequest;
+import com.example.demo.model.JwtResponse;
+import com.example.demo.service.CustomUsersDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.model.Employee;
 import com.example.demo.service.EmployeeService;
@@ -26,7 +25,33 @@ public class AppController {
 
 @Autowired
 EmployeeService empser;
-	//homepage
+
+@Autowired
+CustomUsersDetailsService customUsersDetailsService;
+@Autowired
+JwtUtil jwtUtil;
+@Autowired
+AuthenticationManager authenticationManager;
+
+//	Token Generation
+
+	@PostMapping("/token")
+	public ResponseEntity<JwtResponse> getToken(@RequestBody JwtRequest jwtRequest) throws Exception {
+		System.out.println(jwtRequest);
+		try{
+			this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(),jwtRequest.getPassword()));
+		}catch (Exception e){
+			e.printStackTrace();
+			throw new Exception("wrong details");
+		}
+
+		UserDetails userDetails = this.customUsersDetailsService.loadUserByUsername(jwtRequest.getUsername());
+		String token = this.jwtUtil.generateToken(userDetails);
+
+		return ResponseEntity.ok(new JwtResponse(token));
+	}
+
+	//homepag
 	@RequestMapping("/")
 	@ResponseBody
 	public String hello() {
@@ -36,7 +61,6 @@ EmployeeService empser;
 	}
 	
 	//  view employees
-	
 	@GetMapping("/view")
 	@ResponseBody
 	public List<Employee> view() {
