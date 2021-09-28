@@ -38,6 +38,7 @@ AuthenticationManager authenticationManager;
 	@PostMapping("/token")
 	public ResponseEntity<JwtResponse> getToken(@RequestBody JwtRequest jwtRequest) throws Exception {
 		System.out.println(jwtRequest);
+
 		try{
 			this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(),jwtRequest.getPassword()));
 		}catch (Exception e){
@@ -51,7 +52,7 @@ AuthenticationManager authenticationManager;
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 
-	//homepag
+	//homepage
 	@RequestMapping("/")
 	@ResponseBody
 	public String hello() {

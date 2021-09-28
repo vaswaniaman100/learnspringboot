@@ -39,10 +39,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
+            System.out.println(jwtUtil.getUsernameFromToken(jwtToken));
             try {
                 username = this.jwtUtil.getUsernameFromToken(jwtToken);
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("hfhghghghgghhhhhhhhhhhhhhhhhhhhhh");
             }
         }
 
