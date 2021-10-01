@@ -18,6 +18,7 @@ public class ImplementStream {
                 .filter(m->m.name.startsWith("a"))
                 .map(m->m.name)
                 .collect(Collectors.toList());
+
         System.out.println(lia);
 
 
