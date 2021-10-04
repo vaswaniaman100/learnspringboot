@@ -1,3 +1,4 @@
+//min max code
 package Streamapi;
 import java.util.*;
 class Product{
@@ -10,6 +11,7 @@ class Product{
         this.price = price;
     }
 }
+
 public class JavaStreamExample {
     public static void main(String[] args) {
         List<Product> productsList = new ArrayList<Product>();
