@@ -19,8 +19,8 @@ import com.example.demo.respository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
-	@Autowired
-	JdbcTemplate jdbc;
+//	@Autowired
+//	JdbcTemplate jdbc;
 	
 	@Autowired
 	EmployeeRepository rep;
