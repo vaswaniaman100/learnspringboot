@@ -17,7 +17,7 @@ public class Manager {
     String name;
     @Column(name = "address")
     String address;
-    @JsonIgnore
+
     @OneToMany()
 //    @JoinColumn(name = "mid")
     List<Employee> employees;

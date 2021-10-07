@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
@@ -14,10 +15,16 @@ public class Employee {
 	@Id
 	@Column(name="id")
 	int id;
+
+	//	@Transient
+
 	@Column(name="name")
 	String name;
+
 	@Column(name="address")
 	String address;
+
+	@JsonIgnore
 	@OneToOne()
 //	@JoinColumn(name = "eid")
 	Manager manager;
