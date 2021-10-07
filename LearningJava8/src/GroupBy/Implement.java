@@ -18,8 +18,19 @@ public class Implement {
         man.add(new Manager(2,"piysh",56));
 
 
-        Map<String,Map<String,List<Employee>>> ma = emp.stream().collect(Collectors.groupingBy(Employee::getName,Collectors.groupingBy(Employee::getManager,Collectors.toList())));
+        Map<String,Map<String,List<Employee>>> ma = emp.stream().collect
+                (Collectors.groupingBy(Employee::getName,
+                        Collectors.groupingBy(Employee::getManager,Collectors.toList())));
         System.out.println(ma);
+
+        System.out.println();
+        System.out.println();
+        Map<String,Map<String,List<Employee>>> ma1 = emp.stream().collect
+                (Collectors.groupingBy(Employee::getName,
+                        Collectors.groupingBy(Employee::getManager,Collectors.collectingAndThen(Collectors.mapping(m-> m,Collectors.toList()),employees -> employees))));
+        System.out.println(ma1);
+        System.out.println();
+        System.out.println();
 
         System.out.println(emp.stream().map(m->new Employee(m.getId(),m.getName(),m.getManager(),m.getAge()+30)).sorted((s1,s2)->s1.getAge() <s2.getAge()?1:-1).filter(m->m.getAge()>54).collect(Collectors.toList()));
         System.out.println(emp.stream().map(m->new Employee(m.getId(),m.getName(),m.getManager(),m.getAge()-2)).sorted((s1,s2)->s1.getAge() >s2.getAge()?1:-1).collect(Collectors.toList()));
