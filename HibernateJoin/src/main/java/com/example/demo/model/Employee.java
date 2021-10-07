@@ -15,15 +15,13 @@ public class Employee {
 	@Id
 	@Column(name="id")
 	int id;
-
-	//	@Transient
-
 	@Column(name="name")
 	String name;
 
 	@Column(name="address")
 	String address;
 
+	//	@Transient
 	@JsonIgnore
 	@OneToOne()
 //	@JoinColumn(name = "eid")
