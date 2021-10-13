@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+
+
+<struts>  
+<constant name="struts.action.extension" value=","/> 
+
+	<package name="default" extends="struts-default">  	
+		  
+		<action name="addemployee" class="com.learnstruts.controller.Employee" method="register">  
+			<result name="success">addemployee.jsp</result>  
+		</action>  	 
+		
+		
+		 
+		<action name="updateemp" class="com.learnstruts.controller.Employee" method="updateemp">  
+			<result name="success">updateemp.jsp</result>  
+		</action>  
+		
+		<action name="deleteemp" class="com.learnstruts.controller.Employee" method="deleteemp">  
+			<result name="success">delete.jsp</result>  
+		</action>  
+		
+		
+		
+			  
+		<action name="getemp" class="com.learnstruts.controller.Employee" method="getdata">  
+			<result name="success">/WEB-INF/getempdata.jsp</result>  
+		</action>  	 
+		
+	</package>  		
+	
+</struts> 
