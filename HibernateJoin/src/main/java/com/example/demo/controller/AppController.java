@@ -36,6 +36,13 @@ public class AppController {
         return empser.getEmployees();
 
 	}
+    @RequestMapping("/")
+    @ResponseBody
+    public String home() {
+;
+        return "Hello Welcome to Hibernate Join";
+
+    }
     @RequestMapping("/insertmanager")
     public List<Manager> insertManager(@RequestParam("id" )String id,@RequestParam("name" )String name,
                                        @RequestParam("address") String address){
